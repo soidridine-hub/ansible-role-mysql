@@ -1,2 +1,20 @@
 ---
 # tasks file for ansible-role-mysql
+    - name: install and configure database 
+      apt:
+        pkg:  
+          - mysql-server
+          - mysql-client
+    - name: start database service
+      service: 
+        name: mysql
+        state: restarted 
+    - name: copy sql file to remote mysql-server
+      copy: 
+        src: ./setupdb.sql 
+        dest: /tmp/setupdb.sql
+    - name: import sql commands
+      mysql_db: 
+        name: employee_db
+        state: import 
+        target: /tmp/setupdb.sql
