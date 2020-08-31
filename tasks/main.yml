@@ -6,9 +6,10 @@
           - mysql-server
           - mysql-client
     - name: start database service
-      service: 
-        name: mysql
-        state: restarted 
+      shell: service mysql start
+      # service: # commented because it doesn't start the serviec as expected, replaced by shell command
+      #   name: mysql
+      #   state: restarted 
     - name: copy sql file to remote mysql-server
       copy: 
         src: setupdb.sql 
