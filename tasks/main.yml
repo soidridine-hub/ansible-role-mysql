@@ -11,7 +11,7 @@
         state: restarted 
     - name: copy sql file to remote mysql-server
       copy: 
-        src: ./setupdb.sql 
+        src: setupdb.sql 
         dest: /tmp/setupdb.sql
     - name: import sql commands
       mysql_db: 
